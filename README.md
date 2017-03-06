@@ -1,8 +1,10 @@
 README
 ======
 
+WIP
+
 Requirements
-++++++++++++
+============
 
 Please note that this is the expectation :
 
@@ -24,7 +26,7 @@ Input - jar and text file
 output - assignment (orderid, DE id)
 
 Steps for executing the code
-+++++++++++++++++++++++++++++
+============================
 
 * run all sql queries in migration.sql to setup the DB and seed it with Data.
 * run the jar
