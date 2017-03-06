@@ -4,7 +4,7 @@ README
 Requirements
 ++++++++++++
 
-Please note that this is the expectation from the assignment :
+Please note that this is the expectation :
 
 # User should be able to provide a test file with
     * N orders and jit delay
