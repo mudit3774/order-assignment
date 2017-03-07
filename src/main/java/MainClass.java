@@ -4,6 +4,7 @@ import com.sun.javafx.collections.ImmutableObservableList;
 import dao.exception.OrderInsertFailedException;
 import model.Order;
 import model.Point;
+import service.FeatureCalculatorService;
 import service.StashOrderService;
 
 import java.util.List;
@@ -27,6 +28,13 @@ public class MainClass {
 
 		StashOrderService stashOrderService = injector.getInstance(StashOrderService.class);
 		System.out.println(stashOrderService.getOrders(7L, 128L));
+
+		FeatureCalculatorService featureCalculatorService = injector.getInstance(FeatureCalculatorService.class);
+		try {
+			featureCalculatorService.test();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 

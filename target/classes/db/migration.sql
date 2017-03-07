@@ -8,6 +8,7 @@ CREATE TABLE orders (
             received_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             location GEOGRAPHY(POINT,4326)
+            from_restaurant_location GEOGRAPHY(POINT,4326)
 );
 
 CREATE TABLE delivery_boys (
