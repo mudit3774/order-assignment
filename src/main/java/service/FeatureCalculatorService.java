@@ -2,12 +2,17 @@ package service;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import model.DeliveryBoy;
+import model.Order;
 import service.features.DeliveryBoyIdleTime;
 import service.features.LastMileCost;
 import service.features.OrderDelayFeature;
 import service.features.SingleEntityFeature;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Singleton
 public class FeatureCalculatorService {
@@ -38,13 +43,19 @@ public class FeatureCalculatorService {
 		this.orderFeatures.add(orderDelayFeature);
 	}
 
-	public void test() {
-		deliveryBoyFeatures.stream().forEach(x -> {
-			System.out.println(x.getValue(null));
-		});
+	public Map<UUID, Map<UUID,Double>> getFeatureCostMatrix(Map<Order, List<DeliveryBoy>> possibleAssignment) {
+		return null;
+	}
 
-		orderFeatures.stream().forEach(x -> {
-			System.out.println(x.getValue(null));
-		});
+	private Map<UUID, List<Double>> getDeliveryBoyFeatures(List<DeliveryBoy> deliveryBoys){
+		return null;
+	}
+
+	private Map<UUID, List<Double>> getOrderFeatures(List<Order> orders) {
+		return null;
+	}
+
+	private Map<UUID, Map<UUID,Double>> getInterdependentFeatures(Order order, List<DeliveryBoy> deliveryBoyList){
+		return null;
 	}
 }

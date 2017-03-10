@@ -1,10 +1,12 @@
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.sun.javafx.collections.ImmutableObservableList;
+import controller.StashOrder;
 import dao.exception.OrderInsertFailedException;
 import model.Order;
 import model.Point;
-import service.FeatureCalculatorService;
+import model.context.StashRequest;
+import service.DeliveryBoyService;
 import service.StashOrderService;
 
 import java.util.List;
@@ -12,29 +14,30 @@ import java.util.UUID;
 
 public class MainClass {
 
+//	public Void job(){
+//		Injector injector = Guice.createInjector(new OrderingModule());
+//		AssignmentService assignmentService = injector.getInstance();
+//		// get disctinct cities
+//		// get distinct areas
+//	}
+
+	// Please ignore this code. Mostly for testing
 	public static void main(String[] args) throws OrderInsertFailedException {
 		Injector injector = Guice.createInjector(new OrderingModule());
-//		StashOrder stashOrder =  injector.getInstance(StashOrder.class);
-//		stashOrder.stash(new StashRequest(
-//			new UUID(1, 1123131310),
-//			7L,
-//			128L,
-//			System.currentTimeMillis() + 5000,
-//			new Point(72.1223323, 18.11238022)
-//		));
-//
-//		DeliveryBoyService deliveryBoyService = injector.getInstance(DeliveryBoyService.class);
-//		System.out.print(deliveryBoyService.getDeliveryBoys(new Point(12.2312, 19.209)));
+		StashOrder stashOrder =  injector.getInstance(StashOrder.class);
+		stashOrder.stash(new StashRequest(
+			new UUID(1, 1123131310),
+			7L,
+			128L,
+			System.currentTimeMillis() + 5000,
+			new Point(72.1223323, 18.11238022)
+		));
+
+		DeliveryBoyService deliveryBoyService = injector.getInstance(DeliveryBoyService.class);
+		System.out.print(deliveryBoyService.getDeliveryBoys(new Point(12.2312, 19.209)));
 
 		StashOrderService stashOrderService = injector.getInstance(StashOrderService.class);
 		System.out.println(stashOrderService.getOrders(7L, 128L));
-
-		FeatureCalculatorService featureCalculatorService = injector.getInstance(FeatureCalculatorService.class);
-		try {
-			featureCalculatorService.test();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 
 	}
 

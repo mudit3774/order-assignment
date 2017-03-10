@@ -1,2 +1,13 @@
-*/target/*
-*/target/**
+#Idea
+.idea
+*.iml
+.DS_Store
+
+#Maven
+target
+pom.xml.versionsBackup
+dependency-reduced-pom.xml
+
+#NetBeans
+nb-configuration.xml
+nbactions.xml
