@@ -11,3 +11,5 @@ dependency-reduced-pom.xml
 #NetBeans
 nb-configuration.xml
 nbactions.xml
+
+ordering.log
