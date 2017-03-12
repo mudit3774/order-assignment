@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static constant.Config.DB.DB;
-import static constant.Config.DB.HOST;
-import static constant.Config.DB.PORT;
+import static config.Config.DB.DB;
+import static config.Config.DB.HOST;
+import static config.Config.DB.PORT;
 
 @Singleton
 public class PostgresDAO {

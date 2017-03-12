@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class NormalizationUtil {
-	public Map<UUID, List<Double>> normalize(Map<UUID, List<Double>>) {
+	public Map<UUID, List<Double>> normalize(Map<UUID, List<Double>> input) {
 		return null;
 	}
 }

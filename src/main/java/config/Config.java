@@ -1,4 +1,4 @@
-package constant;
+package config;
 
 public interface Config {
 	interface DB {
