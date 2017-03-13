@@ -12,7 +12,6 @@ import static junit.framework.Assert.assertEquals;
 public class HungarianAssignmentHelperTest {
 
 	private HungarianAssignmentHelper hungarianAssignmentHelper;
-	private final ObjectMother om = new ObjectMother();
 
 	@Before
 	public void setUp() throws Exception {

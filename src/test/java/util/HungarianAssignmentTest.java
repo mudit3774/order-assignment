@@ -2,7 +2,6 @@ package util;
 
 import com.google.common.collect.ImmutableMap;
 import org.jblas.DoubleMatrix;
-import org.junit.Before;
 import org.junit.Test;
 import util.exception.CannotApplyHungarianAssignment;
 
@@ -10,14 +9,11 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+//TODO : Refactor tests to move objects to Object Mother.
+//TODO : Use Guice Injectors
 public class HungarianAssignmentTest {
 
 	private HungarianAssignment assignment = new HungarianAssignment(new HungarianAssignmentHelper());
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
 
 	@Test(expected = CannotApplyHungarianAssignment.class)
 	public void assignNotASquareMatrixException() throws Exception {
@@ -48,6 +44,5 @@ public class HungarianAssignmentTest {
 
 		assertEquals(EXPECTED_ASSIGNMENT_MAP, assignment.assign(TEST_MATRIX));
 	}
-
 
 }
