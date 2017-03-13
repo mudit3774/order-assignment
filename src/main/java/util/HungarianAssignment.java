@@ -29,6 +29,7 @@ public class HungarianAssignment {
 		while(hungarianAssignmentHelper.minLinesCoveringAllZeros(colReduced,
 			hungarianAssignmentHelper.getUnassignedRows(assignmentMap, colReduced)) != matrix.rows){
 			colReduced = hungarianAssignmentHelper.reduceRemainingMatrix(assignmentMap, colReduced);
+			assignmentMap = hungarianAssignmentHelper.getAssignments(colReduced);
 		}
 		return hungarianAssignmentHelper.getAssignments(colReduced);
 	}

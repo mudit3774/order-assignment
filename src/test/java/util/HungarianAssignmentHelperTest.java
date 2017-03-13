@@ -56,6 +56,22 @@ public class HungarianAssignmentHelperTest {
 	}
 
 	@Test
+	public void minLinesCoveringAllZerosCompleteAssignment() throws Exception {
+		DoubleMatrix TEST_MATRIX = new DoubleMatrix(new double[][]{
+			{7.0, 8.0, 0.0, 2.0},
+			{40.0, 0.0, 18.0, 40.0},
+			{0.0, 58.0, 0.0, 60.0},
+			{0.0, 1.0, 96.0, 0.0}
+		});
+
+		List<Integer> TEST_UNASSIGNED_ROWS = new ArrayList<>();
+
+		Integer EXPECTED_LINES = 4;
+
+		assertEquals(EXPECTED_LINES, hungarianAssignmentHelper.minLinesCoveringAllZeros(TEST_MATRIX, TEST_UNASSIGNED_ROWS));
+	}
+
+	@Test
 	public void getMarkedRowsAndColumns() throws Exception {
 		DoubleMatrix TEST_MATRIX = new DoubleMatrix(new double[][]{
 			{13.0, 14.0, 0.0, 8.0},
