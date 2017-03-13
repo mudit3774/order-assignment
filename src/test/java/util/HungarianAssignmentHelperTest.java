@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import org.jblas.DoubleMatrix;
 import org.junit.Before;
 import org.junit.Test;
+import util.assignmentStrategies.HungarianAssignmentHelper;
 
 import java.util.*;
 

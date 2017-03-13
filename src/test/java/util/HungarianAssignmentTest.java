@@ -3,6 +3,8 @@ package util;
 import com.google.common.collect.ImmutableMap;
 import org.jblas.DoubleMatrix;
 import org.junit.Test;
+import util.assignmentStrategies.HungarianAssignment;
+import util.assignmentStrategies.HungarianAssignmentHelper;
 import util.exception.CannotApplyHungarianAssignment;
 
 import java.util.Map;
@@ -36,7 +38,7 @@ public class HungarianAssignmentTest {
 		});
 
 		Map<Integer, Integer> EXPECTED_ASSIGNMENT_MAP = ImmutableMap.<Integer, Integer>builder()
-			.put(0,1)
+			.put(0,2)
 			.put(1,1)
 			.put(2,0)
 			.put(3,3)

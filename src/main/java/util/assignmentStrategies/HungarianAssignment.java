@@ -1,4 +1,4 @@
-package util;
+package util.assignmentStrategies;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -9,7 +9,7 @@ import util.exception.CannotApplyHungarianAssignment;
 import java.util.Map;
 
 @Singleton
-public class HungarianAssignment {
+public class HungarianAssignment implements AssignmentStrategy {
 
 	final static Logger logger = Logger.getLogger(HungarianAssignment.class);
 	private final HungarianAssignmentHelper hungarianAssignmentHelper;

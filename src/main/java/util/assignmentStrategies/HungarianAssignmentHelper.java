@@ -1,4 +1,4 @@
-package util;
+package util.assignmentStrategies;
 
 import com.google.inject.Singleton;
 import org.apache.log4j.Logger;
@@ -9,7 +9,7 @@ import java.util.*;
 import static java.util.Collections.min;
 
 @Singleton
-class HungarianAssignmentHelper {
+public class HungarianAssignmentHelper {
 
 	final static Logger logger = Logger.getLogger(HungarianAssignmentHelper.class);
 

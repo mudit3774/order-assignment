@@ -4,20 +4,22 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import model.DeliveryBoy;
 import model.Order;
+import org.jblas.DoubleMatrix;
 import service.features.DeliveryBoyIdleTime;
 import service.features.LastMileCost;
 import service.features.OrderDelayFeature;
 import service.features.SingleEntityFeature;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.jblas.DoubleMatrix.ones;
+import static sun.swing.MenuItemLayoutHelper.max;
 
 @Singleton
 public class FeatureCalculatorService {
 	// We are creating individual objects for each feature.
-	// The idea is to fetch all classed annoted with @OrderFeature or @DeliveryBoy
+	// The idea is to fetch all classed annotated with @OrderFeature or @DeliveryBoy
 	// feature and use them accordingly. Due to lack of time, it is done like this.
 	// Will clean it if I get time.
 
@@ -27,6 +29,8 @@ public class FeatureCalculatorService {
 	private DeliveryBoyIdleTime deliveryBoyIdleTime;
 	private LastMileCost lastMileCost;
 	private OrderDelayFeature orderDelayFeature;
+
+	private static Double M = 500.0;
 
 	@Inject
 	public FeatureCalculatorService(DeliveryBoyIdleTime deliveryBoyIdleTime,
@@ -43,19 +47,42 @@ public class FeatureCalculatorService {
 		this.orderFeatures.add(orderDelayFeature);
 	}
 
-	public Map<UUID, Map<UUID,Double>> getFeatureCostMatrix(Map<Order, List<DeliveryBoy>> possibleAssignment) {
-		return null;
+	public DoubleMatrix getFeatureCostMatrix(Map<Order, List<DeliveryBoy>> possibleAssignment) {
+		List<UUID> orderIDs = possibleAssignment.keySet().stream().map(Order::getOrderID).collect(Collectors.toList());
+		List<UUID> deliveryBoyIDs = possibleAssignment.values().stream().flatMap(List::stream).map(DeliveryBoy::getID)
+			.collect(Collectors.toList());
+
+		Map<UUID, Integer> orderIDToIndexMap = new HashMap<>();
+		Map<UUID, Integer> deliveryBoyIDToIndexMap = new HashMap<>();
+
+		Integer orderIndexValue = 0;
+		for(UUID orderID:orderIDs) {
+			orderIDToIndexMap.put(orderID, orderIndexValue);
+			orderIndexValue +=1 ;
+		}
+
+		Integer deliveryBoyIndexValue = 0;
+		for(UUID deliveryBoyID:deliveryBoyIDs) {
+			deliveryBoyIDToIndexMap.put(deliveryBoyID, deliveryBoyIndexValue);
+			deliveryBoyIndexValue +=1 ;
+		}
+
+		Integer costMatrixSize = max(orderIDs.size(), deliveryBoyIDs.size());
+		DoubleMatrix costMatrix = ones(costMatrixSize, costMatrixSize).mul(M);
+
+		for(Order order:possibleAssignment.keySet())
+		{
+			for(DeliveryBoy deliveryBoy:possibleAssignment.get(order)) {
+				costMatrix.put(orderIDToIndexMap.get(order.getOrderID()),
+					deliveryBoyIDToIndexMap.get(deliveryBoy.getID()),
+					calculateCost(order, deliveryBoy));
+			}
+		}
+
+		return costMatrix;
 	}
 
-	private Map<UUID, List<Double>> getDeliveryBoyFeatures(List<DeliveryBoy> deliveryBoys){
-		return null;
-	}
-
-	private Map<UUID, List<Double>> getOrderFeatures(List<Order> orders) {
-		return null;
-	}
-
-	private Map<UUID, Map<UUID,Double>> getInterdependentFeatures(Order order, List<DeliveryBoy> deliveryBoyList){
-		return null;
+	private Double calculateCost(Order order, DeliveryBoy deliveryBoy) {
+		return 0.1;
 	}
 }
