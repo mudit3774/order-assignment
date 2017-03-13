@@ -1,14 +1,35 @@
 package util;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import org.apache.log4j.Logger;
+import org.jblas.DoubleMatrix;
+import util.exception.CannotApplyHungarianAssignment;
 
 import java.util.Map;
-import java.util.UUID;
 
 @Singleton
 public class HungarianAssignment {
 
-	public Map<UUID, UUID> assign(Map<UUID, Map<UUID, Double>> featureMatrix){
-		return null;
+	final static Logger logger = Logger.getLogger(HungarianAssignment.class);
+	private final HungarianAssignmentHelper hungarianAssignmentHelper;
+
+	@Inject
+	public HungarianAssignment(HungarianAssignmentHelper hungarianAssignmentHelper) {
+		this.hungarianAssignmentHelper = hungarianAssignmentHelper;
+	}
+
+	public Map<Integer, Integer> assign(DoubleMatrix matrix) {
+		if(!matrix.isSquare()){
+			throw new CannotApplyHungarianAssignment("not a square matrix");
+		}
+		DoubleMatrix rowReduced = matrix.subColumnVector(matrix.rowMins());
+		DoubleMatrix colReduced = rowReduced.subRowVector(rowReduced.columnMins());
+		Map<Integer, Integer> assignmentMap = hungarianAssignmentHelper.getAssignments(colReduced);
+		while(hungarianAssignmentHelper.minLinesCoveringAllZeros(colReduced,
+			hungarianAssignmentHelper.getUnassignedRows(assignmentMap, colReduced)) != matrix.rows){
+			colReduced = hungarianAssignmentHelper.reduceRemainingMatrix(assignmentMap, colReduced);
+		}
+		return hungarianAssignmentHelper.getAssignments(colReduced);
 	}
 }

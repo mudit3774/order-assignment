@@ -39,7 +39,8 @@ public class AssignmentService {
 
 		Map<UUID, Map<UUID, Double>> featureMatrix = featureCalculatorService.getFeatureCostMatrix(
 			flattenList(possibleAssignments));
-		return hungarianAssignment.assign(featureMatrix);
+		return null;
+		//return hungarianAssignment.assign(featureMatrix);
 	}
 
 	private Map<Order, List<DeliveryBoy>> flattenList(List<Map<Order, List<DeliveryBoy>>> list) {
