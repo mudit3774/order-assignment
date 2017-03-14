@@ -7,6 +7,7 @@ import model.Order;
 import model.Point;
 import model.context.StashRequest;
 import service.DeliveryBoyService;
+import service.OrderingModule;
 import service.StashOrderService;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class MainClass {
 
 //	public Void job(){
-//		Injector injector = Guice.createInjector(new OrderingModule());
+//		Injector injector = Guice.createInjector(new service.OrderingModule());
 //		AssignmentService assignmentService = injector.getInstance();
 //		// get disctinct cities
 //		// get distinct areas

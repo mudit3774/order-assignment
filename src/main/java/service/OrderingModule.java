@@ -1,12 +1,11 @@
+package service;
+
 import com.google.inject.AbstractModule;
-import service.features.DeliveryBoyIdleTime;
-import service.features.LastMileCost;
-import service.features.MultipleEntityFeature;
-import service.features.SingleEntityFeature;
+import service.features.*;
 
 public class OrderingModule extends AbstractModule {
 	@Override
-	protected void configure() {
+	public void configure() {
 		bind(MultipleEntityFeature.class).to(LastMileCost.class);
 		bind(SingleEntityFeature.class).to(DeliveryBoyIdleTime.class);
 //		bind(SingleEntityFeature.class).to(OrderDelayFeature.class);
