@@ -6,40 +6,44 @@ import dao.exception.OrderInsertFailedException;
 import model.Order;
 import model.Point;
 import model.context.StashRequest;
-import service.DeliveryBoyService;
+import org.apache.log4j.Logger;
+import org.apache.log4j.chainsaw.Main;
+import service.AssignmentService;
 import service.OrderingModule;
-import service.StashOrderService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class MainClass {
 
-//	public Void job(){
-//		Injector injector = Guice.createInjector(new service.OrderingModule());
-//		AssignmentService assignmentService = injector.getInstance();
-//		// get disctinct cities
-//		// get distinct areas
-//	}
+	final static Logger logger = Logger.getLogger(Main.class);
 
 	// Please ignore this code. Mostly for testing
 	public static void main(String[] args) throws OrderInsertFailedException {
 		Injector injector = Guice.createInjector(new OrderingModule());
 		StashOrder stashOrder =  injector.getInstance(StashOrder.class);
-		stashOrder.stash(new StashRequest(
-			new UUID(1, 1123131310),
-			7L,
-			128L,
-			System.currentTimeMillis() + 5000,
-			new Point(72.1223323, 18.11238022)
-		));
+		AssignmentService assignmentService = injector.getInstance(AssignmentService.class);
 
-		DeliveryBoyService deliveryBoyService = injector.getInstance(DeliveryBoyService.class);
-		System.out.print(deliveryBoyService.getDeliveryBoys(new Point(12.2312, 19.209)));
+		// Test Stash Order
+		logger.info("Stashing Orders Test :");
 
-		StashOrderService stashOrderService = injector.getInstance(StashOrderService.class);
-		System.out.println(stashOrderService.getOrders(7L, 128L));
+		getOrders().forEach(order -> {
+			logger.info("Stashing order with orderID : " + order.getOrderID() );
+			stashOrder.stash(new StashRequest(
+				order.getOrderID(),
+				order.getCityID(),
+				order.getAreaID(),
+				order.getAssignAfter(),
+				order.getOrderLocation()
+			));
+		});
 
+		// Test Assignment
+		logger.info("Running Assignment on seeded data");
+		Map<UUID, UUID> finalAssignments = assignmentService.assign(1L, 7L);
+		logger.info("Final Assignments : ");
+		logger.info(finalAssignments);
 	}
 
 	// This a dummy functions that gives hardcoded orders for now.
@@ -53,7 +57,7 @@ public class MainClass {
 		);
 
 		Order order2 = new Order(
-			new UUID(2, 1231212310),
+			new UUID(2, 1212342310),
 			5L,
 			188L,
 			6L,

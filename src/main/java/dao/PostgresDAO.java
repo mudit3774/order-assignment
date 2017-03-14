@@ -11,6 +11,7 @@ import static config.Config.DB.DB;
 import static config.Config.DB.HOST;
 import static config.Config.DB.PORT;
 
+// TODO : Add ORM
 @Singleton
 public class PostgresDAO {
 	private Connection connection;

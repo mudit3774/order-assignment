@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-// Note : Avoiding ORMs, not a big fan.
-
+// TODO : Add ORM
 @Singleton
 public class OrderStashDAO {
 
@@ -57,16 +56,15 @@ public class OrderStashDAO {
 			ResultSet rs = st.executeQuery();
 			return transformResultSetToGetOrders(rs);
 		} catch (Exception e) {
+			System.out.println(e);
 			throw new GettingOrdersFailed(e.getMessage(), e.getCause());
 		}
 	}
 
 	private List<Order> transformResultSetToGetOrders(ResultSet rs) throws SQLException {
 		List<Order> orders = new ArrayList<Order>();
-		System.out.println(rs.toString());
 		while (rs.next())
 		{
-			System.out.println(rs);
 			orders.add(new Order(
 				UUID.fromString(rs.getString(1)),
 				rs.getLong(2),

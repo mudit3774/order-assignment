@@ -19,27 +19,55 @@ CREATE TABLE delivery_boys (
 
 CREATE INDEX delivery_boys_gix ON delivery_boys USING GIST (Geography(location));
 
-INSERT INTO delivery_boys (id, location) VALUES ('ec7c7ff8-9e64-44ac-9a88-9865f22a3c24',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20ef6',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('ec7c7ff8-9e64-44ac-9a88-9865f22a3c24',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20ef6',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20ef7',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20ef8',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20ef9',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20e10',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20e11',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20e12',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20e13',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-INSERT INTO delivery_boys (id, location) VALUES ('sdadsdas-asda-wwsd',
+INSERT INTO delivery_boys (id, location) VALUES ('22822a54-0873-11e7-808a-9801a7b20e14',
 ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
 
-select * from delivery_boys where ST_DWithin(Geography(location), Geography(ST_MakePoint(12.0, 12.0)), 4000);
-insert into orders (order_id, area_id, city_id, location) values ('adasd', 7, 1, 500, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
-select id, ST_X(location::geometry), ST_Y(location::geometry) from delivery_boys                                                                           ;
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e15', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e16', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e17', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e18', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e19', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e20', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e21', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e22', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e23', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e24', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e25', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e26', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e27', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+insert into orders (order_id, area_id, city_id, location)
+values ('22822a54-0873-11e7-808a-9801a7b20e28', 7, 1, ST_SetSRID(ST_MakePoint('12.2312', '19.209'), 4326));
+
+
+                                                                    ;

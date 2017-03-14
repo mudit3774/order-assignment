@@ -58,8 +58,14 @@ public class AssignmentService {
 	private Map<UUID,UUID> transformToUUID(Map<Integer, Integer> assignment,
 	                                       Map<Integer, UUID> orderIDToIndexRevMap,
 	                                       Map<Integer, UUID> deliveryBoyIDToIndexRevMap) {
-		return assignment.entrySet().stream().collect(Collectors.toMap(e-> orderIDToIndexRevMap.get(e.getKey()),
-			e -> deliveryBoyIDToIndexRevMap.get(e.getValue())));
+		logger.debug(assignment);
+		logger.debug(orderIDToIndexRevMap);
+		logger.debug(deliveryBoyIDToIndexRevMap);
+		return assignment.entrySet().stream()
+			.filter(e -> orderIDToIndexRevMap.containsKey(e.getKey()) &&
+				deliveryBoyIDToIndexRevMap.containsKey(e.getValue()))
+			.collect(Collectors.toMap(
+			e -> orderIDToIndexRevMap.get(e.getKey()), e -> deliveryBoyIDToIndexRevMap.get(e.getValue())));
 	}
 
 	private Map<Order, List<DeliveryBoy>> getPossibleAssignments(Long cityID, Long areaID){
